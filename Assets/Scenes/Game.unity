@@ -789,6 +789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
+  fireRate: 5
   shootFrom: {fileID: 1882176924}
   muzzleFlash: {fileID: 2001867555}
   impactEffekt: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 3}

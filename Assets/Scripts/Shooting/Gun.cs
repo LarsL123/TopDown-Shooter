@@ -4,16 +4,20 @@ public class Gun : MonoBehaviour {
 
     public float damage = 10f;
     public float range = 100f;
+    public float fireRate = 5f;
 
     public Transform shootFrom;
 
     public ParticleSystem muzzleFlash;
     public GameObject impactEffekt;
-	
+
+    private float nextTimeToFire = 0;
+
 	void Update () {
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
+            nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
         }
 
@@ -31,11 +35,14 @@ public class Gun : MonoBehaviour {
             //Deal damage when that system is implemented.
             Debug.Log(hit.transform.name);
 
-        }
-        //Spawning the impact effect.
-        GameObject inpactObject = Instantiate(impactEffekt, hit.point, Quaternion.LookRotation(hit.normal));
+            //Spawning the impact effect.
+            GameObject inpactObject = Instantiate(impactEffekt, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(inpactObject, 2f);
 
-        Destroy(inpactObject, 2f); 
+        }
+        
+
+         
     }
 
    
